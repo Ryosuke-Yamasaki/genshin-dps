@@ -1,0 +1,929 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Visions {
+  id       Int    @id
+  japanese String @db.VarChar(100)
+  english  String @db.VarChar(100)
+
+  @@map("visions")
+}
+
+model WeaponTypes {
+  id       Int    @id
+  japanese String @db.VarChar(100)
+  english  String @db.VarChar(100)
+
+  @@map("weapon_types")
+}
+
+model Genders {
+  id       Int    @id
+  japanese String @db.VarChar(100)
+  english  String @db.VarChar(100)
+
+  @@map("genders")
+}
+
+model Regions {
+  id       Int    @id
+  japanese String @db.VarChar(100)
+  english  String @db.VarChar(100)
+
+  @@map("regions")
+}
+
+model StatNames {
+  id       Int    @id
+  japanese String @db.VarChar(100)
+  english  String @db.VarChar(100)
+
+  @@map("stat_names")
+}
+
+model Elements {
+  id       Int    @id
+  japanese String @db.VarChar(100)
+  english  String @db.VarChar(100)
+
+  @@map("elements")
+}
+
+model AttackTypes {
+  id       Int    @id
+  japanese String @db.VarChar(100)
+  english  String @db.VarChar(100)
+
+  @@map("attack_types")
+}
+
+model Characters {
+  id                   Int    @id
+  visionId             Int    @map("vision_id")
+  weaponTypeId         Int    @map("weapon_type_id")
+  genderId             Int    @map("gender_id")
+  regionId             Int    @map("region_id")
+  ascensionBonusStatId Int    @map("ascension_bonus_stat_id")
+  nameJapanese         String @map("name_japanese") @db.VarChar(100)
+  nameEnglish          String @map("name_english") @db.VarChar(100)
+  title                String @db.VarChar(100)
+  description          String @db.VarChar(1000)
+  star                 Int
+  location             String @db.VarChar(100)
+  constellationTitle   String @map("constellation_title") @db.VarChar(100)
+
+  @@map("characters")
+}
+
+model NormalAttacks {
+  id          Int    @id
+  name        String @db.VarChar(100)
+  description String @db.VarChar(1000)
+
+  @@map("normal_attacks")
+}
+
+model ElementalSkills {
+  id          Int    @id
+  name        String @db.VarChar(100)
+  description String @db.VarChar(1000)
+  maxQty      Int    @map("max_qty")
+
+  @@map("elemental_skills")
+}
+
+model ElementalBursts {
+  id          Int    @id
+  name        String @db.VarChar(100)
+  description String @db.VarChar(1000)
+  cost        Int
+
+  @@map("elemental_bursts")
+}
+
+model PassiveTalents {
+  id          Int    @id
+  characterId Int    @map("character_id")
+  name        String @db.VarChar(100)
+  description String @db.VarChar(1000)
+
+  @@map("passive_talents")
+}
+
+model Constellations {
+  id          Int    @id
+  characterId Int    @map("character_id")
+  rank        Int
+  name        String @db.VarChar(100)
+  description String @db.VarChar(1000)
+
+  @@map("constellations")
+}
+
+model Birthdays {
+  characterId Int @id @map("character_id")
+  month       Int
+  date        Int
+
+  @@map("birthdays")
+}
+
+model CharacterTitles {
+  characterId Int    @id @map("character_id")
+  valueText   String @map("value_text") @db.VarChar(100)
+
+  @@map("character_titles")
+}
+
+model CharacterLocations {
+  characterId Int    @id @map("character_id")
+  valueText   String @map("value_text") @db.VarChar(100)
+
+  @@map("character_locations")
+}
+
+model CharacterBaseHpData {
+  characterId Int     @id @map("character_id")
+  level1_20   Decimal @db.Decimal(9, 4)
+  level2_20   Decimal @db.Decimal(9, 4)
+  level3_20   Decimal @db.Decimal(9, 4)
+  level4_20   Decimal @db.Decimal(9, 4)
+  level5_20   Decimal @db.Decimal(9, 4)
+  level6_20   Decimal @db.Decimal(9, 4)
+  level7_20   Decimal @db.Decimal(9, 4)
+  level8_20   Decimal @db.Decimal(9, 4)
+  level9_20   Decimal @db.Decimal(9, 4)
+  level10_20  Decimal @db.Decimal(9, 4)
+  level11_20  Decimal @db.Decimal(9, 4)
+  level12_20  Decimal @db.Decimal(9, 4)
+  level13_20  Decimal @db.Decimal(9, 4)
+  level14_20  Decimal @db.Decimal(9, 4)
+  level15_20  Decimal @db.Decimal(9, 4)
+  level16_20  Decimal @db.Decimal(9, 4)
+  level17_20  Decimal @db.Decimal(9, 4)
+  level18_20  Decimal @db.Decimal(9, 4)
+  level19_20  Decimal @db.Decimal(9, 4)
+  level20_20  Decimal @db.Decimal(9, 4)
+  level20_40  Decimal @db.Decimal(9, 4)
+  level21_40  Decimal @db.Decimal(9, 4)
+  level22_40  Decimal @db.Decimal(9, 4)
+  level23_40  Decimal @db.Decimal(9, 4)
+  level24_40  Decimal @db.Decimal(9, 4)
+  level25_40  Decimal @db.Decimal(9, 4)
+  level26_40  Decimal @db.Decimal(9, 4)
+  level27_40  Decimal @db.Decimal(9, 4)
+  level28_40  Decimal @db.Decimal(9, 4)
+  level29_40  Decimal @db.Decimal(9, 4)
+  level30_40  Decimal @db.Decimal(9, 4)
+  level31_40  Decimal @db.Decimal(9, 4)
+  level32_40  Decimal @db.Decimal(9, 4)
+  level33_40  Decimal @db.Decimal(9, 4)
+  level34_40  Decimal @db.Decimal(9, 4)
+  level35_40  Decimal @db.Decimal(9, 4)
+  level36_40  Decimal @db.Decimal(9, 4)
+  level37_40  Decimal @db.Decimal(9, 4)
+  level38_40  Decimal @db.Decimal(9, 4)
+  level39_40  Decimal @db.Decimal(9, 4)
+  level40_40  Decimal @db.Decimal(9, 4)
+  level40_50  Decimal @db.Decimal(9, 4)
+  level41_50  Decimal @db.Decimal(9, 4)
+  level42_50  Decimal @db.Decimal(9, 4)
+  level43_50  Decimal @db.Decimal(9, 4)
+  level44_50  Decimal @db.Decimal(9, 4)
+  level45_50  Decimal @db.Decimal(9, 4)
+  level46_50  Decimal @db.Decimal(9, 4)
+  level47_50  Decimal @db.Decimal(9, 4)
+  level48_50  Decimal @db.Decimal(9, 4)
+  level49_50  Decimal @db.Decimal(9, 4)
+  level50_50  Decimal @db.Decimal(9, 4)
+  level50_60  Decimal @db.Decimal(9, 4)
+  level51_60  Decimal @db.Decimal(9, 4)
+  level52_60  Decimal @db.Decimal(9, 4)
+  level53_60  Decimal @db.Decimal(9, 4)
+  level54_60  Decimal @db.Decimal(9, 4)
+  level55_60  Decimal @db.Decimal(9, 4)
+  level56_60  Decimal @db.Decimal(9, 4)
+  level57_60  Decimal @db.Decimal(9, 4)
+  level58_60  Decimal @db.Decimal(9, 4)
+  level59_60  Decimal @db.Decimal(9, 4)
+  level60_60  Decimal @db.Decimal(9, 4)
+  level60_70  Decimal @db.Decimal(9, 4)
+  level61_70  Decimal @db.Decimal(9, 4)
+  level62_70  Decimal @db.Decimal(9, 4)
+  level63_70  Decimal @db.Decimal(9, 4)
+  level64_70  Decimal @db.Decimal(9, 4)
+  level65_70  Decimal @db.Decimal(9, 4)
+  level66_70  Decimal @db.Decimal(9, 4)
+  level67_70  Decimal @db.Decimal(9, 4)
+  level68_70  Decimal @db.Decimal(9, 4)
+  level69_70  Decimal @db.Decimal(9, 4)
+  level70_70  Decimal @db.Decimal(9, 4)
+  level70_80  Decimal @db.Decimal(9, 4)
+  level71_80  Decimal @db.Decimal(9, 4)
+  level72_80  Decimal @db.Decimal(9, 4)
+  level73_80  Decimal @db.Decimal(9, 4)
+  level74_80  Decimal @db.Decimal(9, 4)
+  level75_80  Decimal @db.Decimal(9, 4)
+  level76_80  Decimal @db.Decimal(9, 4)
+  level77_80  Decimal @db.Decimal(9, 4)
+  level78_80  Decimal @db.Decimal(9, 4)
+  level79_80  Decimal @db.Decimal(9, 4)
+  level80_80  Decimal @db.Decimal(9, 4)
+  level80_90  Decimal @db.Decimal(9, 4)
+  level81_90  Decimal @db.Decimal(9, 4)
+  level82_90  Decimal @db.Decimal(9, 4)
+  level83_90  Decimal @db.Decimal(9, 4)
+  level84_90  Decimal @db.Decimal(9, 4)
+  level85_90  Decimal @db.Decimal(9, 4)
+  level86_90  Decimal @db.Decimal(9, 4)
+  level87_90  Decimal @db.Decimal(9, 4)
+  level88_90  Decimal @db.Decimal(9, 4)
+  level89_90  Decimal @db.Decimal(9, 4)
+  level90_90  Decimal @db.Decimal(9, 4)
+
+  @@map("character_base_hp_data")
+}
+
+model CharacterBaseAttackData {
+  characterId Int     @id @map("character_id")
+  level1_20   Decimal @db.Decimal(9, 4)
+  level2_20   Decimal @db.Decimal(9, 4)
+  level3_20   Decimal @db.Decimal(9, 4)
+  level4_20   Decimal @db.Decimal(9, 4)
+  level5_20   Decimal @db.Decimal(9, 4)
+  level6_20   Decimal @db.Decimal(9, 4)
+  level7_20   Decimal @db.Decimal(9, 4)
+  level8_20   Decimal @db.Decimal(9, 4)
+  level9_20   Decimal @db.Decimal(9, 4)
+  level10_20  Decimal @db.Decimal(9, 4)
+  level11_20  Decimal @db.Decimal(9, 4)
+  level12_20  Decimal @db.Decimal(9, 4)
+  level13_20  Decimal @db.Decimal(9, 4)
+  level14_20  Decimal @db.Decimal(9, 4)
+  level15_20  Decimal @db.Decimal(9, 4)
+  level16_20  Decimal @db.Decimal(9, 4)
+  level17_20  Decimal @db.Decimal(9, 4)
+  level18_20  Decimal @db.Decimal(9, 4)
+  level19_20  Decimal @db.Decimal(9, 4)
+  level20_20  Decimal @db.Decimal(9, 4)
+  level20_40  Decimal @db.Decimal(9, 4)
+  level21_40  Decimal @db.Decimal(9, 4)
+  level22_40  Decimal @db.Decimal(9, 4)
+  level23_40  Decimal @db.Decimal(9, 4)
+  level24_40  Decimal @db.Decimal(9, 4)
+  level25_40  Decimal @db.Decimal(9, 4)
+  level26_40  Decimal @db.Decimal(9, 4)
+  level27_40  Decimal @db.Decimal(9, 4)
+  level28_40  Decimal @db.Decimal(9, 4)
+  level29_40  Decimal @db.Decimal(9, 4)
+  level30_40  Decimal @db.Decimal(9, 4)
+  level31_40  Decimal @db.Decimal(9, 4)
+  level32_40  Decimal @db.Decimal(9, 4)
+  level33_40  Decimal @db.Decimal(9, 4)
+  level34_40  Decimal @db.Decimal(9, 4)
+  level35_40  Decimal @db.Decimal(9, 4)
+  level36_40  Decimal @db.Decimal(9, 4)
+  level37_40  Decimal @db.Decimal(9, 4)
+  level38_40  Decimal @db.Decimal(9, 4)
+  level39_40  Decimal @db.Decimal(9, 4)
+  level40_40  Decimal @db.Decimal(9, 4)
+  level40_50  Decimal @db.Decimal(9, 4)
+  level41_50  Decimal @db.Decimal(9, 4)
+  level42_50  Decimal @db.Decimal(9, 4)
+  level43_50  Decimal @db.Decimal(9, 4)
+  level44_50  Decimal @db.Decimal(9, 4)
+  level45_50  Decimal @db.Decimal(9, 4)
+  level46_50  Decimal @db.Decimal(9, 4)
+  level47_50  Decimal @db.Decimal(9, 4)
+  level48_50  Decimal @db.Decimal(9, 4)
+  level49_50  Decimal @db.Decimal(9, 4)
+  level50_50  Decimal @db.Decimal(9, 4)
+  level50_60  Decimal @db.Decimal(9, 4)
+  level51_60  Decimal @db.Decimal(9, 4)
+  level52_60  Decimal @db.Decimal(9, 4)
+  level53_60  Decimal @db.Decimal(9, 4)
+  level54_60  Decimal @db.Decimal(9, 4)
+  level55_60  Decimal @db.Decimal(9, 4)
+  level56_60  Decimal @db.Decimal(9, 4)
+  level57_60  Decimal @db.Decimal(9, 4)
+  level58_60  Decimal @db.Decimal(9, 4)
+  level59_60  Decimal @db.Decimal(9, 4)
+  level60_60  Decimal @db.Decimal(9, 4)
+  level60_70  Decimal @db.Decimal(9, 4)
+  level61_70  Decimal @db.Decimal(9, 4)
+  level62_70  Decimal @db.Decimal(9, 4)
+  level63_70  Decimal @db.Decimal(9, 4)
+  level64_70  Decimal @db.Decimal(9, 4)
+  level65_70  Decimal @db.Decimal(9, 4)
+  level66_70  Decimal @db.Decimal(9, 4)
+  level67_70  Decimal @db.Decimal(9, 4)
+  level68_70  Decimal @db.Decimal(9, 4)
+  level69_70  Decimal @db.Decimal(9, 4)
+  level70_70  Decimal @db.Decimal(9, 4)
+  level70_80  Decimal @db.Decimal(9, 4)
+  level71_80  Decimal @db.Decimal(9, 4)
+  level72_80  Decimal @db.Decimal(9, 4)
+  level73_80  Decimal @db.Decimal(9, 4)
+  level74_80  Decimal @db.Decimal(9, 4)
+  level75_80  Decimal @db.Decimal(9, 4)
+  level76_80  Decimal @db.Decimal(9, 4)
+  level77_80  Decimal @db.Decimal(9, 4)
+  level78_80  Decimal @db.Decimal(9, 4)
+  level79_80  Decimal @db.Decimal(9, 4)
+  level80_80  Decimal @db.Decimal(9, 4)
+  level80_90  Decimal @db.Decimal(9, 4)
+  level81_90  Decimal @db.Decimal(9, 4)
+  level82_90  Decimal @db.Decimal(9, 4)
+  level83_90  Decimal @db.Decimal(9, 4)
+  level84_90  Decimal @db.Decimal(9, 4)
+  level85_90  Decimal @db.Decimal(9, 4)
+  level86_90  Decimal @db.Decimal(9, 4)
+  level87_90  Decimal @db.Decimal(9, 4)
+  level88_90  Decimal @db.Decimal(9, 4)
+  level89_90  Decimal @db.Decimal(9, 4)
+  level90_90  Decimal @db.Decimal(9, 4)
+
+  @@map("character_base_attack_data")
+}
+
+model CharacterBaseDefenseData {
+  characterId Int     @id @map("character_id")
+  level1_20   Decimal @db.Decimal(9, 4)
+  level2_20   Decimal @db.Decimal(9, 4)
+  level3_20   Decimal @db.Decimal(9, 4)
+  level4_20   Decimal @db.Decimal(9, 4)
+  level5_20   Decimal @db.Decimal(9, 4)
+  level6_20   Decimal @db.Decimal(9, 4)
+  level7_20   Decimal @db.Decimal(9, 4)
+  level8_20   Decimal @db.Decimal(9, 4)
+  level9_20   Decimal @db.Decimal(9, 4)
+  level10_20  Decimal @db.Decimal(9, 4)
+  level11_20  Decimal @db.Decimal(9, 4)
+  level12_20  Decimal @db.Decimal(9, 4)
+  level13_20  Decimal @db.Decimal(9, 4)
+  level14_20  Decimal @db.Decimal(9, 4)
+  level15_20  Decimal @db.Decimal(9, 4)
+  level16_20  Decimal @db.Decimal(9, 4)
+  level17_20  Decimal @db.Decimal(9, 4)
+  level18_20  Decimal @db.Decimal(9, 4)
+  level19_20  Decimal @db.Decimal(9, 4)
+  level20_20  Decimal @db.Decimal(9, 4)
+  level20_40  Decimal @db.Decimal(9, 4)
+  level21_40  Decimal @db.Decimal(9, 4)
+  level22_40  Decimal @db.Decimal(9, 4)
+  level23_40  Decimal @db.Decimal(9, 4)
+  level24_40  Decimal @db.Decimal(9, 4)
+  level25_40  Decimal @db.Decimal(9, 4)
+  level26_40  Decimal @db.Decimal(9, 4)
+  level27_40  Decimal @db.Decimal(9, 4)
+  level28_40  Decimal @db.Decimal(9, 4)
+  level29_40  Decimal @db.Decimal(9, 4)
+  level30_40  Decimal @db.Decimal(9, 4)
+  level31_40  Decimal @db.Decimal(9, 4)
+  level32_40  Decimal @db.Decimal(9, 4)
+  level33_40  Decimal @db.Decimal(9, 4)
+  level34_40  Decimal @db.Decimal(9, 4)
+  level35_40  Decimal @db.Decimal(9, 4)
+  level36_40  Decimal @db.Decimal(9, 4)
+  level37_40  Decimal @db.Decimal(9, 4)
+  level38_40  Decimal @db.Decimal(9, 4)
+  level39_40  Decimal @db.Decimal(9, 4)
+  level40_40  Decimal @db.Decimal(9, 4)
+  level40_50  Decimal @db.Decimal(9, 4)
+  level41_50  Decimal @db.Decimal(9, 4)
+  level42_50  Decimal @db.Decimal(9, 4)
+  level43_50  Decimal @db.Decimal(9, 4)
+  level44_50  Decimal @db.Decimal(9, 4)
+  level45_50  Decimal @db.Decimal(9, 4)
+  level46_50  Decimal @db.Decimal(9, 4)
+  level47_50  Decimal @db.Decimal(9, 4)
+  level48_50  Decimal @db.Decimal(9, 4)
+  level49_50  Decimal @db.Decimal(9, 4)
+  level50_50  Decimal @db.Decimal(9, 4)
+  level50_60  Decimal @db.Decimal(9, 4)
+  level51_60  Decimal @db.Decimal(9, 4)
+  level52_60  Decimal @db.Decimal(9, 4)
+  level53_60  Decimal @db.Decimal(9, 4)
+  level54_60  Decimal @db.Decimal(9, 4)
+  level55_60  Decimal @db.Decimal(9, 4)
+  level56_60  Decimal @db.Decimal(9, 4)
+  level57_60  Decimal @db.Decimal(9, 4)
+  level58_60  Decimal @db.Decimal(9, 4)
+  level59_60  Decimal @db.Decimal(9, 4)
+  level60_60  Decimal @db.Decimal(9, 4)
+  level60_70  Decimal @db.Decimal(9, 4)
+  level61_70  Decimal @db.Decimal(9, 4)
+  level62_70  Decimal @db.Decimal(9, 4)
+  level63_70  Decimal @db.Decimal(9, 4)
+  level64_70  Decimal @db.Decimal(9, 4)
+  level65_70  Decimal @db.Decimal(9, 4)
+  level66_70  Decimal @db.Decimal(9, 4)
+  level67_70  Decimal @db.Decimal(9, 4)
+  level68_70  Decimal @db.Decimal(9, 4)
+  level69_70  Decimal @db.Decimal(9, 4)
+  level70_70  Decimal @db.Decimal(9, 4)
+  level70_80  Decimal @db.Decimal(9, 4)
+  level71_80  Decimal @db.Decimal(9, 4)
+  level72_80  Decimal @db.Decimal(9, 4)
+  level73_80  Decimal @db.Decimal(9, 4)
+  level74_80  Decimal @db.Decimal(9, 4)
+  level75_80  Decimal @db.Decimal(9, 4)
+  level76_80  Decimal @db.Decimal(9, 4)
+  level77_80  Decimal @db.Decimal(9, 4)
+  level78_80  Decimal @db.Decimal(9, 4)
+  level79_80  Decimal @db.Decimal(9, 4)
+  level80_80  Decimal @db.Decimal(9, 4)
+  level80_90  Decimal @db.Decimal(9, 4)
+  level81_90  Decimal @db.Decimal(9, 4)
+  level82_90  Decimal @db.Decimal(9, 4)
+  level83_90  Decimal @db.Decimal(9, 4)
+  level84_90  Decimal @db.Decimal(9, 4)
+  level85_90  Decimal @db.Decimal(9, 4)
+  level86_90  Decimal @db.Decimal(9, 4)
+  level87_90  Decimal @db.Decimal(9, 4)
+  level88_90  Decimal @db.Decimal(9, 4)
+  level89_90  Decimal @db.Decimal(9, 4)
+  level90_90  Decimal @db.Decimal(9, 4)
+
+  @@map("character_base_defense_data")
+}
+
+model CharacterAscensionBonusData {
+  id              Int     @id
+  influenceStatId Int     @map("influence_stat_id")
+  level1_20       Decimal @db.Decimal(9, 4)
+  level2_20       Decimal @db.Decimal(9, 4)
+  level3_20       Decimal @db.Decimal(9, 4)
+  level4_20       Decimal @db.Decimal(9, 4)
+  level5_20       Decimal @db.Decimal(9, 4)
+  level6_20       Decimal @db.Decimal(9, 4)
+  level7_20       Decimal @db.Decimal(9, 4)
+  level8_20       Decimal @db.Decimal(9, 4)
+  level9_20       Decimal @db.Decimal(9, 4)
+  level10_20      Decimal @db.Decimal(9, 4)
+  level11_20      Decimal @db.Decimal(9, 4)
+  level12_20      Decimal @db.Decimal(9, 4)
+  level13_20      Decimal @db.Decimal(9, 4)
+  level14_20      Decimal @db.Decimal(9, 4)
+  level15_20      Decimal @db.Decimal(9, 4)
+  level16_20      Decimal @db.Decimal(9, 4)
+  level17_20      Decimal @db.Decimal(9, 4)
+  level18_20      Decimal @db.Decimal(9, 4)
+  level19_20      Decimal @db.Decimal(9, 4)
+  level20_20      Decimal @db.Decimal(9, 4)
+  level20_40      Decimal @db.Decimal(9, 4)
+  level21_40      Decimal @db.Decimal(9, 4)
+  level22_40      Decimal @db.Decimal(9, 4)
+  level23_40      Decimal @db.Decimal(9, 4)
+  level24_40      Decimal @db.Decimal(9, 4)
+  level25_40      Decimal @db.Decimal(9, 4)
+  level26_40      Decimal @db.Decimal(9, 4)
+  level27_40      Decimal @db.Decimal(9, 4)
+  level28_40      Decimal @db.Decimal(9, 4)
+  level29_40      Decimal @db.Decimal(9, 4)
+  level30_40      Decimal @db.Decimal(9, 4)
+  level31_40      Decimal @db.Decimal(9, 4)
+  level32_40      Decimal @db.Decimal(9, 4)
+  level33_40      Decimal @db.Decimal(9, 4)
+  level34_40      Decimal @db.Decimal(9, 4)
+  level35_40      Decimal @db.Decimal(9, 4)
+  level36_40      Decimal @db.Decimal(9, 4)
+  level37_40      Decimal @db.Decimal(9, 4)
+  level38_40      Decimal @db.Decimal(9, 4)
+  level39_40      Decimal @db.Decimal(9, 4)
+  level40_40      Decimal @db.Decimal(9, 4)
+  level40_50      Decimal @db.Decimal(9, 4)
+  level41_50      Decimal @db.Decimal(9, 4)
+  level42_50      Decimal @db.Decimal(9, 4)
+  level43_50      Decimal @db.Decimal(9, 4)
+  level44_50      Decimal @db.Decimal(9, 4)
+  level45_50      Decimal @db.Decimal(9, 4)
+  level46_50      Decimal @db.Decimal(9, 4)
+  level47_50      Decimal @db.Decimal(9, 4)
+  level48_50      Decimal @db.Decimal(9, 4)
+  level49_50      Decimal @db.Decimal(9, 4)
+  level50_50      Decimal @db.Decimal(9, 4)
+  level50_60      Decimal @db.Decimal(9, 4)
+  level51_60      Decimal @db.Decimal(9, 4)
+  level52_60      Decimal @db.Decimal(9, 4)
+  level53_60      Decimal @db.Decimal(9, 4)
+  level54_60      Decimal @db.Decimal(9, 4)
+  level55_60      Decimal @db.Decimal(9, 4)
+  level56_60      Decimal @db.Decimal(9, 4)
+  level57_60      Decimal @db.Decimal(9, 4)
+  level58_60      Decimal @db.Decimal(9, 4)
+  level59_60      Decimal @db.Decimal(9, 4)
+  level60_60      Decimal @db.Decimal(9, 4)
+  level60_70      Decimal @db.Decimal(9, 4)
+  level61_70      Decimal @db.Decimal(9, 4)
+  level62_70      Decimal @db.Decimal(9, 4)
+  level63_70      Decimal @db.Decimal(9, 4)
+  level64_70      Decimal @db.Decimal(9, 4)
+  level65_70      Decimal @db.Decimal(9, 4)
+  level66_70      Decimal @db.Decimal(9, 4)
+  level67_70      Decimal @db.Decimal(9, 4)
+  level68_70      Decimal @db.Decimal(9, 4)
+  level69_70      Decimal @db.Decimal(9, 4)
+  level70_70      Decimal @db.Decimal(9, 4)
+  level70_80      Decimal @db.Decimal(9, 4)
+  level71_80      Decimal @db.Decimal(9, 4)
+  level72_80      Decimal @db.Decimal(9, 4)
+  level73_80      Decimal @db.Decimal(9, 4)
+  level74_80      Decimal @db.Decimal(9, 4)
+  level75_80      Decimal @db.Decimal(9, 4)
+  level76_80      Decimal @db.Decimal(9, 4)
+  level77_80      Decimal @db.Decimal(9, 4)
+  level78_80      Decimal @db.Decimal(9, 4)
+  level79_80      Decimal @db.Decimal(9, 4)
+  level80_80      Decimal @db.Decimal(9, 4)
+  level80_90      Decimal @db.Decimal(9, 4)
+  level81_90      Decimal @db.Decimal(9, 4)
+  level82_90      Decimal @db.Decimal(9, 4)
+  level83_90      Decimal @db.Decimal(9, 4)
+  level84_90      Decimal @db.Decimal(9, 4)
+  level85_90      Decimal @db.Decimal(9, 4)
+  level86_90      Decimal @db.Decimal(9, 4)
+  level87_90      Decimal @db.Decimal(9, 4)
+  level88_90      Decimal @db.Decimal(9, 4)
+  level89_90      Decimal @db.Decimal(9, 4)
+  level90_90      Decimal @db.Decimal(9, 4)
+
+  @@map("character_ascension_bonus_data")
+}
+
+model WeaponBaseAttackData {
+  weaponId   Int     @id @map("weapon_id")
+  level1_20  Decimal @db.Decimal(9, 4)
+  level2_20  Decimal @db.Decimal(9, 4)
+  level3_20  Decimal @db.Decimal(9, 4)
+  level4_20  Decimal @db.Decimal(9, 4)
+  level5_20  Decimal @db.Decimal(9, 4)
+  level6_20  Decimal @db.Decimal(9, 4)
+  level7_20  Decimal @db.Decimal(9, 4)
+  level8_20  Decimal @db.Decimal(9, 4)
+  level9_20  Decimal @db.Decimal(9, 4)
+  level10_20 Decimal @db.Decimal(9, 4)
+  level11_20 Decimal @db.Decimal(9, 4)
+  level12_20 Decimal @db.Decimal(9, 4)
+  level13_20 Decimal @db.Decimal(9, 4)
+  level14_20 Decimal @db.Decimal(9, 4)
+  level15_20 Decimal @db.Decimal(9, 4)
+  level16_20 Decimal @db.Decimal(9, 4)
+  level17_20 Decimal @db.Decimal(9, 4)
+  level18_20 Decimal @db.Decimal(9, 4)
+  level19_20 Decimal @db.Decimal(9, 4)
+  level20_20 Decimal @db.Decimal(9, 4)
+  level20_40 Decimal @db.Decimal(9, 4)
+  level21_40 Decimal @db.Decimal(9, 4)
+  level22_40 Decimal @db.Decimal(9, 4)
+  level23_40 Decimal @db.Decimal(9, 4)
+  level24_40 Decimal @db.Decimal(9, 4)
+  level25_40 Decimal @db.Decimal(9, 4)
+  level26_40 Decimal @db.Decimal(9, 4)
+  level27_40 Decimal @db.Decimal(9, 4)
+  level28_40 Decimal @db.Decimal(9, 4)
+  level29_40 Decimal @db.Decimal(9, 4)
+  level30_40 Decimal @db.Decimal(9, 4)
+  level31_40 Decimal @db.Decimal(9, 4)
+  level32_40 Decimal @db.Decimal(9, 4)
+  level33_40 Decimal @db.Decimal(9, 4)
+  level34_40 Decimal @db.Decimal(9, 4)
+  level35_40 Decimal @db.Decimal(9, 4)
+  level36_40 Decimal @db.Decimal(9, 4)
+  level37_40 Decimal @db.Decimal(9, 4)
+  level38_40 Decimal @db.Decimal(9, 4)
+  level39_40 Decimal @db.Decimal(9, 4)
+  level40_40 Decimal @db.Decimal(9, 4)
+  level40_50 Decimal @db.Decimal(9, 4)
+  level41_50 Decimal @db.Decimal(9, 4)
+  level42_50 Decimal @db.Decimal(9, 4)
+  level43_50 Decimal @db.Decimal(9, 4)
+  level44_50 Decimal @db.Decimal(9, 4)
+  level45_50 Decimal @db.Decimal(9, 4)
+  level46_50 Decimal @db.Decimal(9, 4)
+  level47_50 Decimal @db.Decimal(9, 4)
+  level48_50 Decimal @db.Decimal(9, 4)
+  level49_50 Decimal @db.Decimal(9, 4)
+  level50_50 Decimal @db.Decimal(9, 4)
+  level50_60 Decimal @db.Decimal(9, 4)
+  level51_60 Decimal @db.Decimal(9, 4)
+  level52_60 Decimal @db.Decimal(9, 4)
+  level53_60 Decimal @db.Decimal(9, 4)
+  level54_60 Decimal @db.Decimal(9, 4)
+  level55_60 Decimal @db.Decimal(9, 4)
+  level56_60 Decimal @db.Decimal(9, 4)
+  level57_60 Decimal @db.Decimal(9, 4)
+  level58_60 Decimal @db.Decimal(9, 4)
+  level59_60 Decimal @db.Decimal(9, 4)
+  level60_60 Decimal @db.Decimal(9, 4)
+  level60_70 Decimal @db.Decimal(9, 4)
+  level61_70 Decimal @db.Decimal(9, 4)
+  level62_70 Decimal @db.Decimal(9, 4)
+  level63_70 Decimal @db.Decimal(9, 4)
+  level64_70 Decimal @db.Decimal(9, 4)
+  level65_70 Decimal @db.Decimal(9, 4)
+  level66_70 Decimal @db.Decimal(9, 4)
+  level67_70 Decimal @db.Decimal(9, 4)
+  level68_70 Decimal @db.Decimal(9, 4)
+  level69_70 Decimal @db.Decimal(9, 4)
+  level70_70 Decimal @db.Decimal(9, 4)
+  level70_80 Decimal @db.Decimal(9, 4)
+  level71_80 Decimal @db.Decimal(9, 4)
+  level72_80 Decimal @db.Decimal(9, 4)
+  level73_80 Decimal @db.Decimal(9, 4)
+  level74_80 Decimal @db.Decimal(9, 4)
+  level75_80 Decimal @db.Decimal(9, 4)
+  level76_80 Decimal @db.Decimal(9, 4)
+  level77_80 Decimal @db.Decimal(9, 4)
+  level78_80 Decimal @db.Decimal(9, 4)
+  level79_80 Decimal @db.Decimal(9, 4)
+  level80_80 Decimal @db.Decimal(9, 4)
+  level80_90 Decimal @db.Decimal(9, 4)
+  level81_90 Decimal @db.Decimal(9, 4)
+  level82_90 Decimal @db.Decimal(9, 4)
+  level83_90 Decimal @db.Decimal(9, 4)
+  level84_90 Decimal @db.Decimal(9, 4)
+  level85_90 Decimal @db.Decimal(9, 4)
+  level86_90 Decimal @db.Decimal(9, 4)
+  level87_90 Decimal @db.Decimal(9, 4)
+  level88_90 Decimal @db.Decimal(9, 4)
+  level89_90 Decimal @db.Decimal(9, 4)
+  level90_90 Decimal @db.Decimal(9, 4)
+
+  @@map("weapon_base_attack_data")
+}
+
+model Weapons {
+  id           Int    @id
+  weaponTypeId Int    @map("weapon_type_id")
+  subStatId    Int    @map("sub_stat_id")
+  baseAttack   Int    @map("base_attack")
+  nameJapanese String @map("name_japanese") @db.VarChar(100)
+  nameEnglish  String @map("name_english") @db.VarChar(100)
+  description  String @db.VarChar(1000)
+  star         Int
+
+  @@map("weapons")
+}
+
+model WeaponSubStatData {
+  id         Int     @id
+  subStatId  Int     @map("sub_stat_id")
+  baseAttack Int     @map("base_attack")
+  level1_20  Decimal @db.Decimal(9, 4)
+  level2_20  Decimal @db.Decimal(9, 4)
+  level3_20  Decimal @db.Decimal(9, 4)
+  level4_20  Decimal @db.Decimal(9, 4)
+  level5_20  Decimal @db.Decimal(9, 4)
+  level6_20  Decimal @db.Decimal(9, 4)
+  level7_20  Decimal @db.Decimal(9, 4)
+  level8_20  Decimal @db.Decimal(9, 4)
+  level9_20  Decimal @db.Decimal(9, 4)
+  level10_20 Decimal @db.Decimal(9, 4)
+  level11_20 Decimal @db.Decimal(9, 4)
+  level12_20 Decimal @db.Decimal(9, 4)
+  level13_20 Decimal @db.Decimal(9, 4)
+  level14_20 Decimal @db.Decimal(9, 4)
+  level15_20 Decimal @db.Decimal(9, 4)
+  level16_20 Decimal @db.Decimal(9, 4)
+  level17_20 Decimal @db.Decimal(9, 4)
+  level18_20 Decimal @db.Decimal(9, 4)
+  level19_20 Decimal @db.Decimal(9, 4)
+  level20_20 Decimal @db.Decimal(9, 4)
+  level20_40 Decimal @db.Decimal(9, 4)
+  level21_40 Decimal @db.Decimal(9, 4)
+  level22_40 Decimal @db.Decimal(9, 4)
+  level23_40 Decimal @db.Decimal(9, 4)
+  level24_40 Decimal @db.Decimal(9, 4)
+  level25_40 Decimal @db.Decimal(9, 4)
+  level26_40 Decimal @db.Decimal(9, 4)
+  level27_40 Decimal @db.Decimal(9, 4)
+  level28_40 Decimal @db.Decimal(9, 4)
+  level29_40 Decimal @db.Decimal(9, 4)
+  level30_40 Decimal @db.Decimal(9, 4)
+  level31_40 Decimal @db.Decimal(9, 4)
+  level32_40 Decimal @db.Decimal(9, 4)
+  level33_40 Decimal @db.Decimal(9, 4)
+  level34_40 Decimal @db.Decimal(9, 4)
+  level35_40 Decimal @db.Decimal(9, 4)
+  level36_40 Decimal @db.Decimal(9, 4)
+  level37_40 Decimal @db.Decimal(9, 4)
+  level38_40 Decimal @db.Decimal(9, 4)
+  level39_40 Decimal @db.Decimal(9, 4)
+  level40_40 Decimal @db.Decimal(9, 4)
+  level40_50 Decimal @db.Decimal(9, 4)
+  level41_50 Decimal @db.Decimal(9, 4)
+  level42_50 Decimal @db.Decimal(9, 4)
+  level43_50 Decimal @db.Decimal(9, 4)
+  level44_50 Decimal @db.Decimal(9, 4)
+  level45_50 Decimal @db.Decimal(9, 4)
+  level46_50 Decimal @db.Decimal(9, 4)
+  level47_50 Decimal @db.Decimal(9, 4)
+  level48_50 Decimal @db.Decimal(9, 4)
+  level49_50 Decimal @db.Decimal(9, 4)
+  level50_50 Decimal @db.Decimal(9, 4)
+  level50_60 Decimal @db.Decimal(9, 4)
+  level51_60 Decimal @db.Decimal(9, 4)
+  level52_60 Decimal @db.Decimal(9, 4)
+  level53_60 Decimal @db.Decimal(9, 4)
+  level54_60 Decimal @db.Decimal(9, 4)
+  level55_60 Decimal @db.Decimal(9, 4)
+  level56_60 Decimal @db.Decimal(9, 4)
+  level57_60 Decimal @db.Decimal(9, 4)
+  level58_60 Decimal @db.Decimal(9, 4)
+  level59_60 Decimal @db.Decimal(9, 4)
+  level60_60 Decimal @db.Decimal(9, 4)
+  level60_70 Decimal @db.Decimal(9, 4)
+  level61_70 Decimal @db.Decimal(9, 4)
+  level62_70 Decimal @db.Decimal(9, 4)
+  level63_70 Decimal @db.Decimal(9, 4)
+  level64_70 Decimal @db.Decimal(9, 4)
+  level65_70 Decimal @db.Decimal(9, 4)
+  level66_70 Decimal @db.Decimal(9, 4)
+  level67_70 Decimal @db.Decimal(9, 4)
+  level68_70 Decimal @db.Decimal(9, 4)
+  level69_70 Decimal @db.Decimal(9, 4)
+  level70_70 Decimal @db.Decimal(9, 4)
+  level70_80 Decimal @db.Decimal(9, 4)
+  level71_80 Decimal @db.Decimal(9, 4)
+  level72_80 Decimal @db.Decimal(9, 4)
+  level73_80 Decimal @db.Decimal(9, 4)
+  level74_80 Decimal @db.Decimal(9, 4)
+  level75_80 Decimal @db.Decimal(9, 4)
+  level76_80 Decimal @db.Decimal(9, 4)
+  level77_80 Decimal @db.Decimal(9, 4)
+  level78_80 Decimal @db.Decimal(9, 4)
+  level79_80 Decimal @db.Decimal(9, 4)
+  level80_80 Decimal @db.Decimal(9, 4)
+  level80_90 Decimal @db.Decimal(9, 4)
+  level81_90 Decimal @db.Decimal(9, 4)
+  level82_90 Decimal @db.Decimal(9, 4)
+  level83_90 Decimal @db.Decimal(9, 4)
+  level84_90 Decimal @db.Decimal(9, 4)
+  level85_90 Decimal @db.Decimal(9, 4)
+  level86_90 Decimal @db.Decimal(9, 4)
+  level87_90 Decimal @db.Decimal(9, 4)
+  level88_90 Decimal @db.Decimal(9, 4)
+  level89_90 Decimal @db.Decimal(9, 4)
+  level90_90 Decimal @db.Decimal(9, 4)
+
+  @@map("weapon_sub_stat_data")
+}
+
+model Refinements {
+  weaponId         Int    @id @map("weapon_id")
+  name             String @db.VarChar(100)
+  descriptionRank1 String @map("description_rank1") @db.VarChar(1000)
+  descriptionRank2 String @map("description_rank2") @db.VarChar(1000)
+  descriptionRank3 String @map("description_rank3") @db.VarChar(1000)
+  descriptionRank4 String @map("description_rank4") @db.VarChar(1000)
+  descriptionRank5 String @map("description_rank5") @db.VarChar(1000)
+
+  @@map("refinements")
+}
+
+model ArtifactTypes {
+  id       Int    @id
+  japanese String @db.VarChar(100)
+  english  String @db.VarChar(100)
+
+  @@map("artifact_types")
+}
+
+model ArtifactSets {
+  id               Int    @id
+  nameJapanese     String @map("name_japanese") @db.VarChar(100)
+  nameEnglish      String @map("name_english") @db.VarChar(100)
+  description_2set String @db.VarChar(1000)
+  description_4set String @db.VarChar(1000)
+
+  @@map("artifact_sets")
+}
+
+model Artifacts {
+  id             Int    @id
+  artifactTypeId Int    @map("artifact_type_id")
+  artifactSetId  Int    @map("artifact_set_id")
+  name           String @db.VarChar(100)
+  description    String @db.VarChar(1000)
+  star           Int
+
+  @@map("artifacts")
+}
+
+model ArtifactMainStatData {
+  statId Int     @id @map("stat_id")
+  star4  Decimal @db.Decimal(9, 4)
+  star5  Decimal @db.Decimal(9, 4)
+
+  @@map("artifact_main_stat_data")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refreshToken      String? @map("refresh_token") @db.Text
+  accessToken       String? @map("access_token") @db.Text
+  expiresAt         Int?    @map("expires_at")
+  tokenType         String? @map("token_type")
+  scope             String?
+  idToken           String? @map("id_token") @db.Text
+  sessionState      String? @map("session_state")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model User {
+  id               String             @id @default(cuid())
+  name             String?
+  email            String?            @unique
+  emailVerified    DateTime?          @map("email_verified")
+  image            String?
+  accounts         Account[]
+  sessions         Session[]
+  ArtifactManagers ArtifactManagers[]
+  Targets          Targets[]
+
+  @@map("users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+model Targets {
+  id                       String   @id @default(cuid())
+  userId                   String   @map("user_id")
+  characterId              Int      @map("character_id")
+  characterLevelId         Int      @map("character_level_id")
+  normalAttackLevel        Int      @map("normal_attack_level")
+  elementalSkillLevel      Int      @map("elemental_skill_level")
+  elementalBurstLevel      Int      @map("elemental_burst_level")
+  constellationRank        Int      @map("constellation_rank")
+  weaponId                 Int      @map("weapon_id")
+  weaponLevelId            Int      @map("weapon_level_id")
+  refinementRank           Int      @map("refinement_rank")
+  flowerArtifactManagerId  Int      @map("flower_artifact_manager_id")
+  plumeArtifactManagerId   Int      @map("plume_artifact_manager_id")
+  sandsArtifactManagerId   Int      @map("sands_artifact_manager_id")
+  gobletArtifactManagerId  Int      @map("goblet_artifact_manager_id")
+  circletArtifactManagerId Int      @map("circlet_artifact_manager_id")
+  createdAt                DateTime @default(now()) @map("created_at")
+  updatedAt                DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("targets")
+}
+
+model ArtifactManagers {
+  id             String   @id @default(cuid())
+  userId         String   @map("user_id")
+  score          Decimal  @db.Decimal(9, 4)
+  artifactId     Int      @map("artifact_id")
+  mainStatId     Int      @map("main_stat_id")
+  sub1StatNameId Int      @map("sub1_stat_name_id")
+  sub2StatNameId Int      @map("sub2_stat_name_id")
+  sub3StatNameId Int      @map("sub3_stat_name_id")
+  sub4StatNameId Int      @map("sub4_stat_name_id")
+  sub1Number     Decimal  @map("sub1_number") @db.Decimal(9, 4)
+  sub2Number     Decimal  @map("sub2_number") @db.Decimal(9, 4)
+  sub3Number     Decimal  @map("sub3_number") @db.Decimal(9, 4)
+  sub4Number     Decimal  @map("sub4_number") @db.Decimal(9, 4)
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("artifact_managers")
+}
