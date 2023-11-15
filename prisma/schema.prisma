@@ -828,57 +828,39 @@ model ArtifactMainStatData {
   @@map("artifact_main_stat_data")
 }
 
-model Account {
-  id                String  @id @default(cuid())
-  userId            String  @map("user_id")
-  type              String
-  provider          String
-  providerAccountId String  @map("provider_account_id")
-  refreshToken      String? @map("refresh_token") @db.Text
-  accessToken       String? @map("access_token") @db.Text
-  expiresAt         Int?    @map("expires_at")
-  tokenType         String? @map("token_type")
-  scope             String?
-  idToken           String? @map("id_token") @db.Text
-  sessionState      String? @map("session_state")
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([provider, providerAccountId])
-  @@map("accounts")
-}
-
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique @map("session_token")
-  userId       String   @map("user_id")
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("sessions")
-}
-
-model User {
-  id               String             @id @default(cuid())
+model Users {
+  id               String             @id @default(uuid())
   name             String?
   email            String?            @unique
   emailVerified    DateTime?          @map("email_verified")
   image            String?
-  accounts         Account[]
-  sessions         Session[]
-  ArtifactManagers ArtifactManagers[]
+  hashedPassword   String?            @map("hashed_password")
+  createdAt        DateTime           @default(now()) @map("created_at")
+  updatedAt        DateTime           @updatedAt @map("updated_at")
+  accounts         Accounts[]
   Targets          Targets[]
+  ArtifactManagers ArtifactManagers[]
 
   @@map("users")
 }
 
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
+model Accounts {
+  id                String  @id @default(uuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refreshToken      String? @map("refresh_token")
+  accessToken       String? @map("access_token")
+  expiresAt         Int?    @map("expires_at")
+  tokenType         String? @map("token_type")
+  scope             String?
+  idToken           String? @map("id_token")
+  sessionState      String? @map("session_state")
+  user              Users   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([identifier, token])
-  @@map("verificationtokens")
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
 }
 
 model Targets {
@@ -901,7 +883,7 @@ model Targets {
   createdAt                DateTime @default(now()) @map("created_at")
   updatedAt                DateTime @updatedAt @map("updated_at")
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("targets")
 }
@@ -923,7 +905,7 @@ model ArtifactManagers {
   createdAt      DateTime @default(now()) @map("created_at")
   updatedAt      DateTime @updatedAt @map("updated_at")
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("artifact_managers")
 }
