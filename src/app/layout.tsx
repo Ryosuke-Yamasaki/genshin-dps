@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
             <footer className="py-5">
               <div className="text-center text-sm">
-                Copyright © All rights reserved | FullStackChannel
+                Copyright © COGNOSPHERE. All rights reserved | Genshin DPS Checker
               </div>
             </footer>
           </div>
