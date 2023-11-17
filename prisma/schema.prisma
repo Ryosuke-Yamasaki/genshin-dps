@@ -558,6 +558,159 @@ model CharacterAscensionBonusData {
   @@map("character_ascension_bonus_data")
 }
 
+model NormalAttackData {
+  id              Int     @id
+  characterId     Int     @map("character_id")
+  referenceStatId Int     @map("reference_stat_id")
+  influenceStatId Int     @map("influence_stat_id")
+  name            String  @db.VarChar(100)
+  level1          Decimal @db.Decimal(9, 4)
+  level2          Decimal @db.Decimal(9, 4)
+  level3          Decimal @db.Decimal(9, 4)
+  level4          Decimal @db.Decimal(9, 4)
+  level5          Decimal @db.Decimal(9, 4)
+  level6          Decimal @db.Decimal(9, 4)
+  level7          Decimal @db.Decimal(9, 4)
+  level8          Decimal @db.Decimal(9, 4)
+  level9          Decimal @db.Decimal(9, 4)
+  level10         Decimal @db.Decimal(9, 4)
+  level11         Decimal @db.Decimal(9, 4)
+  level12         Decimal @db.Decimal(9, 4)
+  level13         Decimal @db.Decimal(9, 4)
+  level14         Decimal @db.Decimal(9, 4)
+  level15         Decimal @db.Decimal(9, 4)
+
+  @@map("normal_attack_data")
+}
+
+model NormalAttackDmgData {
+  id              Int     @id
+  characterId     Int     @map("character_id")
+  referenceStatId Int     @map("reference_stat_id")
+  elementId       Int     @map("element_id")
+  attackTypeId    Int     @map("attack_type_id")
+  name            String  @db.VarChar(100)
+  level1          Decimal @db.Decimal(9, 4)
+  level2          Decimal @db.Decimal(9, 4)
+  level3          Decimal @db.Decimal(9, 4)
+  level4          Decimal @db.Decimal(9, 4)
+  level5          Decimal @db.Decimal(9, 4)
+  level6          Decimal @db.Decimal(9, 4)
+  level7          Decimal @db.Decimal(9, 4)
+  level8          Decimal @db.Decimal(9, 4)
+  level9          Decimal @db.Decimal(9, 4)
+  level10         Decimal @db.Decimal(9, 4)
+  level11         Decimal @db.Decimal(9, 4)
+  level12         Decimal @db.Decimal(9, 4)
+  level13         Decimal @db.Decimal(9, 4)
+  level14         Decimal @db.Decimal(9, 4)
+  level15         Decimal @db.Decimal(9, 4)
+
+  @@map("normal_attack_dmg_data")
+}
+
+model ElementalSkillData {
+  id              Int     @id
+  characterId     Int     @map("character_id")
+  referenceStatId Int     @map("reference_stat_id")
+  influenceStatId Int     @map("influence_stat_id")
+  name            String  @db.VarChar(100)
+  level1          Decimal @db.Decimal(9, 4)
+  level2          Decimal @db.Decimal(9, 4)
+  level3          Decimal @db.Decimal(9, 4)
+  level4          Decimal @db.Decimal(9, 4)
+  level5          Decimal @db.Decimal(9, 4)
+  level6          Decimal @db.Decimal(9, 4)
+  level7          Decimal @db.Decimal(9, 4)
+  level8          Decimal @db.Decimal(9, 4)
+  level9          Decimal @db.Decimal(9, 4)
+  level10         Decimal @db.Decimal(9, 4)
+  level11         Decimal @db.Decimal(9, 4)
+  level12         Decimal @db.Decimal(9, 4)
+  level13         Decimal @db.Decimal(9, 4)
+  level14         Decimal @db.Decimal(9, 4)
+  level15         Decimal @db.Decimal(9, 4)
+
+  @@map("elemental_skill_data")
+}
+
+model ElementalSkillDmgData {
+  id              Int     @id
+  characterId     Int     @map("character_id")
+  referenceStatId Int     @map("reference_stat_id")
+  elementId       Int     @map("element_id")
+  attackTypeId    Int     @map("attack_type_id")
+  name            String  @db.VarChar(100)
+  level1          Decimal @db.Decimal(9, 4)
+  level2          Decimal @db.Decimal(9, 4)
+  level3          Decimal @db.Decimal(9, 4)
+  level4          Decimal @db.Decimal(9, 4)
+  level5          Decimal @db.Decimal(9, 4)
+  level6          Decimal @db.Decimal(9, 4)
+  level7          Decimal @db.Decimal(9, 4)
+  level8          Decimal @db.Decimal(9, 4)
+  level9          Decimal @db.Decimal(9, 4)
+  level10         Decimal @db.Decimal(9, 4)
+  level11         Decimal @db.Decimal(9, 4)
+  level12         Decimal @db.Decimal(9, 4)
+  level13         Decimal @db.Decimal(9, 4)
+  level14         Decimal @db.Decimal(9, 4)
+  level15         Decimal @db.Decimal(9, 4)
+
+  @@map("elemental_skill_dmg_data")
+}
+
+model ElementalBurstData {
+  id              Int     @id
+  characterId     Int     @map("character_id")
+  referenceStatId Int     @map("reference_stat_id")
+  influenceStatId Int     @map("influence_stat_id")
+  name            String  @db.VarChar(100)
+  level1          Decimal @db.Decimal(9, 4)
+  level2          Decimal @db.Decimal(9, 4)
+  level3          Decimal @db.Decimal(9, 4)
+  level4          Decimal @db.Decimal(9, 4)
+  level5          Decimal @db.Decimal(9, 4)
+  level6          Decimal @db.Decimal(9, 4)
+  level7          Decimal @db.Decimal(9, 4)
+  level8          Decimal @db.Decimal(9, 4)
+  level9          Decimal @db.Decimal(9, 4)
+  level10         Decimal @db.Decimal(9, 4)
+  level11         Decimal @db.Decimal(9, 4)
+  level12         Decimal @db.Decimal(9, 4)
+  level13         Decimal @db.Decimal(9, 4)
+  level14         Decimal @db.Decimal(9, 4)
+  level15         Decimal @db.Decimal(9, 4)
+
+  @@map("elemental_burst_data")
+}
+
+model ElementalBurstDmgData {
+  id              Int     @id
+  characterId     Int     @map("character_id")
+  referenceStatId Int     @map("reference_stat_id")
+  elementId       Int     @map("element_id")
+  attackTypeId    Int     @map("attack_type_id")
+  name            String  @db.VarChar(100)
+  level1          Decimal @db.Decimal(9, 4)
+  level2          Decimal @db.Decimal(9, 4)
+  level3          Decimal @db.Decimal(9, 4)
+  level4          Decimal @db.Decimal(9, 4)
+  level5          Decimal @db.Decimal(9, 4)
+  level6          Decimal @db.Decimal(9, 4)
+  level7          Decimal @db.Decimal(9, 4)
+  level8          Decimal @db.Decimal(9, 4)
+  level9          Decimal @db.Decimal(9, 4)
+  level10         Decimal @db.Decimal(9, 4)
+  level11         Decimal @db.Decimal(9, 4)
+  level12         Decimal @db.Decimal(9, 4)
+  level13         Decimal @db.Decimal(9, 4)
+  level14         Decimal @db.Decimal(9, 4)
+  level15         Decimal @db.Decimal(9, 4)
+
+  @@map("elemental_burst_dmg_data")
+}
+
 model WeaponBaseAttackData {
   weaponBaseAttack Int     @id @map("weapon_base_attack")
   level1_20        Decimal @db.Decimal(9, 4)
