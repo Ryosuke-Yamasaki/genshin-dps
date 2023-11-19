@@ -985,7 +985,7 @@ model Users {
   image            String?
   hashedPassword   String?            @map("hashed_password")
   createdAt        DateTime           @default(now()) @map("created_at")
-  updatedAt        DateTime           @updatedAt @map("updated_at")
+  updatedAt        DateTime           @default(now()) @updatedAt @map("updated_at")
   targets          Targets[]
   artifactManagers ArtifactManagers[]
 
@@ -1020,7 +1020,7 @@ model Targets {
   gobletArtifactManagerId  String?  @map("goblet_artifact_manager_id")
   circletArtifactManagerId String?  @map("circlet_artifact_manager_id")
   createdAt                DateTime @default(now()) @map("created_at")
-  updatedAt                DateTime @updatedAt @map("updated_at")
+  updatedAt                DateTime @default(now()) @updatedAt @map("updated_at")
 
   user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -1042,7 +1042,7 @@ model ArtifactManagers {
   sub3Number     Decimal  @map("sub3_number") @db.Decimal(9, 4)
   sub4Number     Decimal  @map("sub4_number") @db.Decimal(9, 4)
   createdAt      DateTime @default(now()) @map("created_at")
-  updatedAt      DateTime @updatedAt @map("updated_at")
+  updatedAt      DateTime @default(now()) @updatedAt @map("updated_at")
 
   user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
 
