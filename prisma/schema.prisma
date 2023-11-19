@@ -992,23 +992,33 @@ model Users {
   @@map("users")
 }
 
+model Levels {
+  id            Int    @id
+  level         Int
+  ascensionRank Int    @map("ascension_rank")
+  valueText     String @map("value_text") @db.VarChar(100)
+
+  @@map("levels")
+}
+
 model Targets {
   id                       String   @id @default(cuid())
   userId                   String   @map("user_id")
-  characterId              Int      @map("character_id")
-  characterLevelId         Int      @map("character_level_id")
-  normalAttackLevel        Int      @map("normal_attack_level")
-  elementalSkillLevel      Int      @map("elemental_skill_level")
-  elementalBurstLevel      Int      @map("elemental_burst_level")
-  constellationRank        Int      @map("constellation_rank")
-  weaponId                 Int      @map("weapon_id")
-  weaponLevelId            Int      @map("weapon_level_id")
-  refinementRank           Int      @map("refinement_rank")
-  flowerArtifactManagerId  Int      @map("flower_artifact_manager_id")
-  plumeArtifactManagerId   Int      @map("plume_artifact_manager_id")
-  sandsArtifactManagerId   Int      @map("sands_artifact_manager_id")
-  gobletArtifactManagerId  Int      @map("goblet_artifact_manager_id")
-  circletArtifactManagerId Int      @map("circlet_artifact_manager_id")
+  name                     String?  @db.VarChar(100)
+  characterId              Int      @default(29) @map("character_id")
+  characterLevelId         Int      @default(96) @map("character_level_id")
+  normalAttackLevel        Int      @default(8) @map("normal_attack_level")
+  elementalSkillLevel      Int      @default(8) @map("elemental_skill_level")
+  elementalBurstLevel      Int      @default(8) @map("elemental_burst_level")
+  constellationRank        Int      @default(0) @map("constellation_rank")
+  weaponId                 Int      @default(5502) @map("weapon_id")
+  weaponLevelId            Int      @default(96) @map("weapon_level_id")
+  refinementRank           Int      @default(1) @map("refinement_rank")
+  flowerArtifactManagerId  String?  @map("flower_artifact_manager_id")
+  plumeArtifactManagerId   String?  @map("plume_artifact_manager_id")
+  sandsArtifactManagerId   String?  @map("sands_artifact_manager_id")
+  gobletArtifactManagerId  String?  @map("goblet_artifact_manager_id")
+  circletArtifactManagerId String?  @map("circlet_artifact_manager_id")
   createdAt                DateTime @default(now()) @map("created_at")
   updatedAt                DateTime @updatedAt @map("updated_at")
 
@@ -1020,7 +1030,7 @@ model Targets {
 model ArtifactManagers {
   id             String   @id @default(cuid())
   userId         String   @map("user_id")
-  score          Decimal  @db.Decimal(9, 4)
+  name           String?  @db.VarChar(100)
   artifactId     Int      @map("artifact_id")
   mainStatId     Int      @map("main_stat_id")
   sub1StatNameId Int      @map("sub1_stat_name_id")
