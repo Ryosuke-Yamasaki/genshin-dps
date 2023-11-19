@@ -2,7 +2,6 @@ import NextAuth, { NextAuthOptions } from 'next-auth'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 
 import CredentialsProvider from 'next-auth/providers/credentials'
-import GoogleProvider from 'next-auth/providers/google'
 import bcrypt from 'bcrypt'
 import prisma from '@/app/lib/prisma'
 
@@ -12,12 +11,6 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   // 認証プロバイダーの設定
   providers: [
-    // Google認証
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    }),
-
     // メールアドレス認証
     CredentialsProvider({
       name: 'credentials',
