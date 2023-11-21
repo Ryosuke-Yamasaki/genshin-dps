@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { main } from "../route"
-import prisma from '@/app/lib/prisma'
+import prisma from "@/app/lib/prisma"
 
 
 //自分の編成の全取得API
@@ -25,11 +25,11 @@ export const GET = async (req: Request, res: NextResponse) => {
 export const POST = async (req: Request, res: NextResponse) => {
   try {
     const id = req.url.split("/party/")[1]
-    const { characterId, characterLevelId, normalAttackLevel, elementalSkillLevel, elementalBurstLevel, constellationRank, weaponId, weaponLevelId, refinementRank, name } = await req.json()
+    const { characterId, characterLevelId, normalAttackLevel, elementalSkillLevel, elementalBurstLevel, constellationRank, weaponId, weaponLevelId, refinementRank, name, flowerArtifactManagerId, plumeArtifactManagerId, sandsArtifactManagerId, gobletArtifactManagerId, circletArtifactManagerId, artifact1Buff, artifact2Buff, artifact3Buff, character1Buff, character2Buff, character3Buff, elementalResonance1Buff, elementalResonance2Buff, weapon1Buff, weapon2Buff, weapon3Buff, } = await req.json()
     await main()
     const target = await prisma.targets.create({
       data: {
-        characterId, characterLevelId, normalAttackLevel, elementalSkillLevel, elementalBurstLevel, constellationRank, weaponId, weaponLevelId, refinementRank, name,
+        characterId, characterLevelId, normalAttackLevel, elementalSkillLevel, elementalBurstLevel, constellationRank, weaponId, weaponLevelId, refinementRank, name, flowerArtifactManagerId, plumeArtifactManagerId, sandsArtifactManagerId, gobletArtifactManagerId, circletArtifactManagerId, artifact1Buff, artifact2Buff, artifact3Buff, character1Buff, character2Buff, character3Buff, elementalResonance1Buff, elementalResonance2Buff, weapon1Buff, weapon2Buff, weapon3Buff,
         user: {
           connect: {
             id: id
