@@ -78,6 +78,7 @@ model Characters {
   description          String @db.VarChar(1000)
   star                 Int
   constellationTitle   String @map("constellation_title") @db.VarChar(100)
+  url                  String @db.VarChar(100)
 
   @@map("characters")
 }
@@ -823,6 +824,7 @@ model Weapons {
   description    String @db.VarChar(1000)
   star           Int
   refinementName String @map("refinement_name") @db.VarChar(100)
+  url            String @db.VarChar(100)
 
   @@map("weapons")
 }
@@ -965,6 +967,7 @@ model Artifacts {
   name           String @db.VarChar(100)
   description    String @db.VarChar(1000)
   star           Int
+  url            String @db.VarChar(100)
 
   @@map("artifacts")
 }
@@ -1001,8 +1004,9 @@ model WeaponBuffs {
 }
 
 model ElementalResonaneceBuffs {
-  id   Int    @id
-  name String @db.VarChar(100)
+  id          Int    @id
+  name        String @db.VarChar(100)
+  description String @db.VarChar(1000)
 
   @@map("elemental_resonanece_buffs")
 }
