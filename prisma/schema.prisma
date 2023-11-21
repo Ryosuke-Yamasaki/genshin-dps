@@ -977,6 +977,36 @@ model ArtifactMainStatData {
   @@map("artifact_main_stat_data")
 }
 
+model CharacterBuffs {
+  id            Int    @id
+  characterId   Int    @map("character_id")
+  referenceType String @map("reference_type") @db.VarChar(100)
+
+  @@map("character_buffs")
+}
+
+model ArtifactBuffs {
+  artifactSetId Int @id @map("artifact_set_id")
+  needcount     Int
+
+  @@map("artifact_buffs")
+}
+
+model WeaponBuffs {
+  id             Int @id
+  weaponId       Int @map("weapon_id")
+  refinementRank Int @map("refinement_rank")
+
+  @@map("weapon_buffs")
+}
+
+model ElementalResonaneceBuffs {
+  id   Int    @id
+  name String @db.VarChar(100)
+
+  @@map("elemental_resonanece_buffs")
+}
+
 model Users {
   id               String             @id @default(uuid())
   name             String?
@@ -1019,6 +1049,17 @@ model Targets {
   sandsArtifactManagerId   String?  @map("sands_artifact_manager_id")
   gobletArtifactManagerId  String?  @map("goblet_artifact_manager_id")
   circletArtifactManagerId String?  @map("circlet_artifact_manager_id")
+  character1Buff           Int?     @map("character1_buff")
+  character2Buff           Int?     @map("character2_buff")
+  character3Buff           Int?     @map("character3_buff")
+  weapon1Buff              Int?     @map("weapon1_buff")
+  weapon2Buff              Int?     @map("weapon2_buff")
+  weapon3Buff              Int?     @map("weapon3_buff")
+  artifact1Buff            Int?     @map("artifact1_buff")
+  artifact2Buff            Int?     @map("artifact2_buff")
+  artifact3Buff            Int?     @map("artifact3_buff")
+  elementalResonance1Buff  Int?     @map("elemental_resonance1_buff")
+  elementalResonance2Buff  Int?     @map("elemental_resonance2_buff")
   createdAt                DateTime @default(now()) @map("created_at")
   updatedAt                DateTime @default(now()) @updatedAt @map("updated_at")
 
